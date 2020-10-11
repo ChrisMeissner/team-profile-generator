@@ -1,59 +1,79 @@
-class Employee {
-  constructor(name, id, email) {
-    this.name = name;
-    this.id = id;
-    this.email = email;
-  }
+const fs = require("fs");
+const path = require("path");
+const inquirer = require("inquirer");
+const generateMarkdown = require("./src/generateMarkdown");
 
-  getName() {
-    console.log(this.name);
+const questions = [
+  {
+    type: 'input',
+    name: 'name',
+    message: 'What is your name?',
+    validate: nameInput => {
+      if (nameInput) {
+        return true;
+      } else {
+        console.log('Please enter your name.');
+        return false;
+      }
+    }
+  },
+  {
+    type: 'input',          
+    name: 'id',
+    message: 'What is your ID?',
+    validate: idInput => {
+      if (idInput) {
+        return true;
+      } else {
+        console.log('Please enter your ID!');
+        return false;
+      }
+    }
+  },
+  {
+    type: 'input',          
+    name: 'email',
+    message: 'What is your email?',
+    validate: emailInput => {
+      if (emailInput) {
+        return true;
+      } else {
+        console.log('Please enter your email!');
+        return false;
+      }
+    }
+  },
+  {
+    type: 'list',          
+    name: 'role',
+    message: 'What is the name of your role?',
+    choices:['Manager', 'Engineer', 'Intern'],
+    validate: roleInput => {
+      if (roleInput) {
+        return true;
+      } else {
+        console.log('Please select a role.');
+        return false;
+      }
+    }
   }
+]
 
-  getId() {
-    console.log('ID: ' + this.id);
-  }
 
-  getEmail() {
-    console.log('Email: ' + this.email);
-  }
-};
+function writeToFile(fileName, data) {
+  return fs.writeFile(path.join(process.cwd(), fileName), data, function(err){
+    if (err) throw err
+    console.log("finished")
+  })
+}
 
-class Manager extends Employee {
-  constructor(officeNumber) {
-    this.officeNumber = officeNumber;
-  }
 
-  getRole(Mangager) {
-    console.log('Manager');
-  }
-};
+function init() {
+  inquirer.prompt(questions).then(data => {
+    console.log("generating team profile");
+    writeToFile("index.html", generateMarkdown(data));
+  }) 
+} 
 
-class Engineer extends Employee {
-  constructor(github) {
-    this.github = github;
-  }
+init();
 
-  getGithub() {
-    console.log('Github: ' + this.github);
-  }
-
-  getRole(Engineer) {
-  console.log('Engineer');
-  }
-};
-
-class Intern extends Employee {
-  constructor(school) {
-    this.school = school;
-  }
-    
-  getSchool() {
-    console.log('School: ' + this.school);
-  }
-
-  getRole(Intern) {
-    console.log('Intern');
-  }
-};
-
-module.exports = function() {};

@@ -1,5 +1,4 @@
-const Manager = require('../index');
-const { expect } = require('@jest/globals');
+const Manager = require('../index.js');
 
 test('creates a manager object', () => {
   const manager = new Manager('name');

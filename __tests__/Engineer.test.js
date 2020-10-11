@@ -1,5 +1,4 @@
-const Engineer = require('../index');
-const { expect } = require('@jest/globals');
+const Engineer = require('../index.js');
 
 test('creates an engineer object', () => {
   const engineer = new Engineer('name');
