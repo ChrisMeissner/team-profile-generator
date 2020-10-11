@@ -1,9 +1,13 @@
-const Employee = require('../index.js');
+const { test, expect } = require ("@jest/globals"); 
+const Employee = require("../lib/employeeClass");
 
 test('creates an employee object', () => {
-  const employee = new Employee('name');
+  const employee = new Employee('name', 'id', 'email');
 
-  expect(employee.name).toBe('name');
-  expect(employee.id).toBe('id');
-  expect(employee.email).toBe('email');
+  expect(employee.getName()).toBe('name');
+  expect(employee.getId()).toBe('id');
+  expect(employee.getEmail()).toBe('email')
+  expect(employee.name).toEqual(expect.any(String));
+  expect(employee.id).toEqual(expect.any(Number));
+  expect(employee.email).toEqual(expect.any(String));
 });
