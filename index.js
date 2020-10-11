@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const inquirer = require("inquirer");
-const generateMarkdown = require("./src/generateMarkdown");
+const generateMarkdown = require("../team-profile-generator/src/generateMarkdown");
 
 const questions = [
   {
@@ -47,17 +47,9 @@ const questions = [
     type: 'list',          
     name: 'role',
     message: 'What is the name of your role?',
-    choices:['Manager', 'Engineer', 'Intern'],
-    validate: roleInput => {
-      if (roleInput) {
-        return true;
-      } else {
-        console.log('Please select a role.');
-        return false;
-      }
-    }
+    choices:['Manager', 'Engineer', 'Intern']
   }
-]
+];
 
 
 function writeToFile(fileName, data) {

@@ -1,4 +1,4 @@
-const Engineer = require('../index.js');
+const Engineer = require('../index');
 
 test('creates an engineer object', () => {
   const engineer = new Engineer('name');
@@ -6,5 +6,5 @@ test('creates an engineer object', () => {
   expect(engineer.name).toBe('name');
   expect(engineer.id).toBe('id');
   expect(engineer.email).toBe('email');
-  expect(engineer.github)toBe('github');
+  expect(engineer.github).toBe('github');
 });
