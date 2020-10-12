@@ -86,17 +86,27 @@ const promptWhatNext = () => {
       message: "What would you like to do next?",
       choices: ['Add Engineer', 'Add Intern', 'Finish Profile'],
       validate: employeeAddInput => {
-        if(employeeAddInput == 'Add Engineer') {
-          promptEngineer();
-        } else if(employeeAddInput == 'Add Intern') {
-          promptIntern();
+        if(employeeAddInput) {
+          return true;
         } else {
-          writePage();
+          return false;
         }
       }
     }
   ])
-};
+
+  .then((answers) => {
+    console.log(answers)
+    if(answers.employeeAdd == 'Add Engineer') {
+      promptEngineer();
+    } else if(answers.employeeAdd == 'Add Intern') {
+      promptIntern();
+    } else if(answers.employeeAdd == 'Finish Profile') {
+      writePage();
+      console.log("Go to 'teamprofile.html' to see your updated team profile.");
+    }
+  });
+}
 
 
 const promptEngineer = () => {
