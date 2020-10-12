@@ -1,7 +1,13 @@
-const fs = require("fs");
-const path = require("path");
-const inquirer = require("inquirer");
-const generateMarkdown = require("../team-profile-generator/src/generateMarkdown");
+const fs = require('fs');
+const jest = require('jest');
+const inquirer = require('inquirer');
+const generateTemplate = require('./src/page-template');
+
+const Employee = require ("./lib/employeeClass");
+const Engineer = require ("./lib/engineerClass");
+const Intern = require ("./lib/internClass");
+const Manager = require ("./lib/managerClass");
+
 
 const questions = [
   {
