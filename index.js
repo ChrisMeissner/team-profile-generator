@@ -69,7 +69,7 @@ function writeToFile(fileName, data) {
 function init() {
   inquirer.prompt(questions).then(data => {
     console.log("generating team profile");
-    writeToFile("index.html", generateMarkdown(data));
+    writeToFile("index.html", generateTemplate(data));
   }) 
 } 
 

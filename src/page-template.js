@@ -1,35 +1,15 @@
-const fs = require('fs');
+generateTemplate = () => {
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Team Profile Generator</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  `
+}
 
-const writeFile = fileContent => {
-  return new Promise((resolve, reject) => {
-    fs.writeFile('./dist/index.html', fileContent, err => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve({
-        ok: true,
-        message: 'File created!'
-      });
-    });
-  });
-};
-
-const copyFile = () => {
-  return new Promise((resolve, reject) => {
-    fs.copyFile('./src/style.css', './dist/style.css', err => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve({
-        ok: true,
-        message: 'Stylesheet created!'
-      });
-    });
-  });
-};
-
-module.exports = { writeFile, copyFile };
+// add to bottom 
+module.exports = generateTemplate;
