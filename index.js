@@ -19,11 +19,12 @@ const promptManager = () => {
     {
       type: 'input',
       name: 'manName',
-      message: "Hello Manager! Please enter your name?",
+      message: "Hello Manager! Please enter your name? (required)",
       validate: manNameInput => {
         if (manNameInput) {
           return true;
         } else {
+          console.log("You must enter your name.");
           return false;
         }
       }
@@ -31,11 +32,12 @@ const promptManager = () => {
     {
       type: 'input',
       name: 'manIdNumber',
-      message: "What is your Employee ID Number?",
+      message: "What is your Employee ID Number? (required)",
       validate: manIdNumberInput => {
         if (manIdNumberInput) {
           return true;
         } else {
+          console.log("You must enter your Employee ID Number.");
           return false;
         }
       }
@@ -43,11 +45,12 @@ const promptManager = () => {
     {
       type: 'input',
       name: 'manEmail',
-      message: "What is your email address?",
+      message: "What is your email address? (required)",
       validate: manEmailInput => {
         if (manEmailInput) {
           return true;
         } else {
+          console.log("You must enter your email adress.");
           return false;
         }
       }
@@ -55,11 +58,12 @@ const promptManager = () => {
     {
       type: 'input',
       name: 'manOfficeNumber',
-      message: "What is your office number?",
+      message: "What is your office number? (required)",
       validate: manOfficeNumberInput => {
         if (manOfficeNumberInput) {
           return true;
         } else {
+          console.log("You must enter your office number.");
           return false;
         }
       }
@@ -72,7 +76,7 @@ const promptManager = () => {
     allIds.push(data.id);
     promptWhatNext();
   })
-};
+}
 
 const promptWhatNext = () => {
   inquirer.prompt([
@@ -82,26 +86,16 @@ const promptWhatNext = () => {
       message: "What would you like to do next?",
       choices: ['Add Engineer', 'Add Intern', 'Finish Profile'],
       validate: employeeAddInput => {
-        if (employeeAddInput) {
-          return true;
+        if(employeeAddInput == 'Add Engineer') {
+          promptEngineer();
+        } else if(employeeAddInput == 'Add Intern') {
+          promptIntern();
         } else {
-          return false;
+          writePage();
         }
       }
-    },
+    }
   ])
-  
-  .then((answers) => {
-    console.log(answers)
-      if(answers.choice === 'Add Engineer') {
-        promptEngineer();
-      } else if(answers.choice === 'Add Intern') {
-        promptIntern();
-      } else if(answers.choice === 'Finish Profile') {
-        writePage();
-        console.log("Go to 'teamprofile.html' to see your updated team profile.");
-      }
-  })
 };
 
 
