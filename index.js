@@ -1,5 +1,5 @@
 const fs = require('fs');
-const jest = require('jest');
+const path = require('path');
 const inquirer = require('inquirer');
 const generateTemplate = require('./src/page-template');
 
@@ -8,70 +8,65 @@ const Engineer = require ("./lib/engineerClass");
 const Intern = require ("./lib/internClass");
 const Manager = require ("./lib/managerClass");
 
-
-const questions = [
-  {
-    type: 'input',
-    name: 'name',
-    message: 'What is your name?',
-    validate: nameInput => {
-      if (nameInput) {
-        return true;
-      } else {
-        console.log('Please enter your name.');
-        return false;
+const profileTeam = () => {
+  inquirer.promptManager([
+    {
+      type: 'input',
+      name: 'manName',
+      message: "Hello Manager! Please enter your name?",
+      validate: manNameInput => {
+        if (manNameInput) {
+          return true;
+        } else {
+          return false;
+        }
       }
-    }
-  },
-  {
-    type: 'input',          
-    name: 'id',
-    message: 'What is your ID?',
-    validate: idInput => {
-      if (idInput) {
-        return true;
-      } else {
-        console.log('Please enter your ID!');
-        return false;
+    },
+    {
+      type: 'input',
+      name: 'manIdNumber',
+      message: "What is your employee ID number?",
+      validate: manIdNumberInput => {
+        if (manIdNumberInput) {
+          return true;
+        } else {
+          return false;
+        }
       }
-    }
-  },
-  {
-    type: 'input',          
-    name: 'email',
-    message: 'What is your email?',
-    validate: emailInput => {
-      if (emailInput) {
-        return true;
-      } else {
-        console.log('Please enter your email!');
-        return false;
+    },
+    {
+      type: 'input',
+      name: 'manEmail',
+      message: "What is your email address?",
+      validate: manEmailInput => {
+        if (manEmailInput) {
+          return true;
+        } else {
+          return false;
+        }
       }
+    },
+    {
+      type: 'input',
+      name: 'manOfficeNumber',
+      message: "What is your office number?",
+      validate: manOfficeNumberInput => {
+        if (manOfficeNumberInput) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    {
+      type: 'list'
+      name: 'employeeAdd'
+      message: "What would you like to do next?"
+      choices: ['Add Engineer', 'Add Intern', 'Finish Profile']
+      Validate: employeeAddInput => {
+        if (employeeAddInput) {
+          return
+        }
+      }
+
     }
-  },
-  {
-    type: 'list',          
-    name: 'role',
-    message: 'What is the name of your role?',
-    choices:['Manager', 'Engineer', 'Intern']
-  }
-];
-
-
-function writeToFile(fileName, data) {
-  return fs.writeFile(path.join(process.cwd(), fileName), data, function(err){
-    if (err) throw err
-    console.log("finished")
-  })
-}
-
-
-function init() {
-  inquirer.prompt(questions).then(data => {
-    console.log("generating team profile");
-    writeToFile("index.html", generateTemplate(data));
-  }) 
-} 
-
-init();
-

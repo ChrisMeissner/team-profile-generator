@@ -1,4 +1,5 @@
-const { test, expect } = require ("@jest/globals"); 
+//create constants for test/expect & add requi
+const { test, expect } = require ("jest"); 
 const Employee = require("../lib/employeeClass");
 
 test('creates an employee object', () => {
