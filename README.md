@@ -16,7 +16,7 @@ This is an app that generates a team profile based on inputs from a manager. Bui
 npm i
 
 ## Usage
-Click the video to see the app run in the command line. <iframe src="https://drive.google.com/file/d/1NRcQI_utc9bfhxio_OChXQwrlW2yARK-/preview" width="640" height="480"></iframe>
+Click the link to the video to see the app run in the command line.  https://drive.google.com/file/d/1NRcQI_utc9bfhxio_OChXQwrlW2yARK-/preview
 
 
 ## Contributing
