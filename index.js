@@ -64,7 +64,7 @@ const profileTeam = () => {
   ])
 
   .then(data => {
-    const manager = new Manager(data.name, data.id, data.email, data.officeNumber)
+    const manager = new Manager(data.manName, data.manIdNumber, data.manEmail, data.manOfficeNumber)
     allTeam.push(manager)
     allIds.push(data.id)
     profileTeam();
@@ -92,7 +92,7 @@ const profileTeam = () => {
       promptEngineer();
     } else if(answers.choice === 'Add Intern') {
       promptIntern();
-    } else if(amswers.choice === 'Finish Profile') {
+    } else if(answers.choice === 'Finish Profile') {
       writePage();
       console.log("Go to 'team.html' to see your updated team profile.");
     }
@@ -100,6 +100,61 @@ const profileTeam = () => {
 };
 
 const promptEngineer = () => {
+  inquirer.prompt([
+    {
+      type: 'input',
+      name: 'enName',
+      message: "What is the engineer's name? (required)"
+      validate: enNameInput => {
+        if(enNameInput) {
+          return true;
+        } else {
+          console.log("You must enter a name for this engineer.");
+          return false;
+        }
+      }
+    },
+    {
+      type: 'number',
+      name: 'enIdNumber',
+      message: "What is this engineer's ID number? (required)"
+      validate: enIdInput => {
+        if(enIdInput) {
+          return true;
+        } else {
+          console.log("You must enter an ID number for this engineer.")
+        }
+      }
+
+    },
+    {
+      type: 'input',
+      name: 'enEmail'
+      message: "Please enter the engineer's email address. (required)
+      validate: enEmailInput => {
+        if (enEmailInput) {
+          return true;
+        } else {
+          console.log("You must enter an email for this Engineer.")
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'enGithub',
+      message: "Please enter the engineer's Github username."
+      validate: enGithubInput => {
+        if(enGithubInput) {
+          return true;
+        } else {
+          console.log("You must enter a Github username for this engineer.")
+        }
+      }
+    }
+  ])
+  .then(data => {
+    const engineer = new Engineer(data.enName, data.enIdNumber, data.enEmail, data.enGithub)
+  })
 
   console.log('')
 }
