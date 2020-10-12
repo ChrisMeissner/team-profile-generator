@@ -12,7 +12,7 @@ const allTeam = [];
 const allIds = [];
 
 const output_dir = path.resolve(__dirname, "output");
-const output_path = path.join(output_dir, 'teamprofile.html')
+const output_path = path.join(output_dir, 'teamprofile.html');
 
 const promptManager = () => {
   inquirer.prompt([
@@ -64,14 +64,14 @@ const promptManager = () => {
         }
       }
     }
-  ])
+  ]);
 
   .then(data => {
     const manager = new Manager(data.manName, data.manIdNumber, data.manEmail, data.manOfficeNumber);
     allTeam.push(manager);
     allIds.push(data.id);
-    promptManager();
-  })
+    promptWhatNext();
+  });
 };
 
 const promptWhatNext = () => {
@@ -89,7 +89,7 @@ const promptWhatNext = () => {
         }
       }
     },
-  ])
+  ]);
   
   .then((answers) => {
     console.log(answers)
@@ -101,7 +101,7 @@ const promptWhatNext = () => {
         writePage();
         console.log("Go to 'teamprofile.html' to see your updated team profile.");
       }
-  })
+  });
 };
 
 
@@ -157,14 +157,14 @@ const promptEngineer = () => {
         }
       }
     }
-  ])
+  ]);
 
   .then(data => {
     const engineer = new Engineer(data.enName, data.enIdNumber, data.enEmail, data.enGithub);
     allTeam.push(engineer);
     allIds.push(data.enIdNumber);
     promptWhatNext();
-  })
+  });
 };
 
 const promptIntern = () => {
@@ -219,12 +219,23 @@ const promptIntern = () => {
         }
       }
     }
-  ])
+  ]);
 
   .then(data => {
     const intern = new Intern(data.inName, data.inIdNumber, data.inEmail, data.inSchoolInput);
     allTeam.push(intern);
     allIds.push(data.inIdNumber);
     promptWhatNext();
-  })
+  });
 };
+
+function writePage() {
+  if(!fs.existsSync(output_dir) {fs.mkdir(output_dir)}
+  fs.writeFileSync(output_path, generateTemplate(allTeam), 'UTF-8'))
+}
+
+function init() {
+  promptManager();
+}
+
+init();
