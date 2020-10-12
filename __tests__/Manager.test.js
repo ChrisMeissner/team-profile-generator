@@ -4,12 +4,12 @@ const Manager = require ("../lib/managerClass");
 test('creates a manager object', () => {
   const manager = new Manager('name', 'id', 'email', 'officeNumber');
 
-  expect(manager.name).toEqual('name');
-  expect(manager.id).toEqual('id');
-  expect(manager.email).toEqual('email');
-  expect(manager.officeNumber).toEqual('officeNumber');
-  expect(manager.getName()).toBe(expect.any(String));
-  expect(manager.getId()).toBe(expect.any(Number));
-  expect(manager.getEmail()).toBe(expect.any(String));
-  expect(manager.getOfficeNumber()).toBe(expect.any(Number));
+  expect(manager.getName()).toBe('name');
+  expect(manager.getId()).toBe('id');
+  expect(manager.getEmail()).toBe('email');
+  expect(manager.getOfficeNumber()).toBe('officeNumber');
+  expect(manager.name).toEqual(expect.any(String));
+  expect(manager.id).toEqual(expect.any(Number));
+  expect(manager.email).toEqual(expect.any(String));
+  expect(manager.officeNumber).toEqual(expect.any(Number));
 });

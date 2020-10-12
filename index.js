@@ -59,14 +59,10 @@ const profileTeam = () => {
       }
     },
     {
-      type: 'list'
-      name: 'employeeAdd'
-      message: "What would you like to do next?"
+      type: 'list',
+      name: 'employeeAdd',
+      message: "What would you like to do next?",
       choices: ['Add Engineer', 'Add Intern', 'Finish Profile']
-      Validate: employeeAddInput => {
-        if (employeeAddInput) {
-          return
-        }
       }
 
     }
