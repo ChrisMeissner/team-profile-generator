@@ -64,14 +64,14 @@ const promptManager = () => {
         }
       }
     }
-  ]);
-
+  ])
+  
   .then(data => {
     const manager = new Manager(data.manName, data.manIdNumber, data.manEmail, data.manOfficeNumber);
     allTeam.push(manager);
     allIds.push(data.id);
     promptWhatNext();
-  });
+  })
 };
 
 const promptWhatNext = () => {
@@ -80,7 +80,7 @@ const promptWhatNext = () => {
       type: 'list',
       name: 'employeeAdd',
       message: "What would you like to do next?",
-      choices: ['Add Engineer', 'Add Intern', 'Finish Profile']
+      choices: ['Add Engineer', 'Add Intern', 'Finish Profile'],
       validate: employeeAddInput => {
         if (employeeAddInput) {
           return true;
@@ -89,7 +89,7 @@ const promptWhatNext = () => {
         }
       }
     },
-  ]);
+  ])
   
   .then((answers) => {
     console.log(answers)
@@ -101,7 +101,7 @@ const promptWhatNext = () => {
         writePage();
         console.log("Go to 'teamprofile.html' to see your updated team profile.");
       }
-  });
+  })
 };
 
 
@@ -110,7 +110,7 @@ const promptEngineer = () => {
     {
       type: 'input',
       name: 'enName',
-      message: "What is the Engineer's name? (required)"
+      message: "What is the Engineer's name? (required)",
       validate: enNameInput => {
         if(enNameInput) {
           return true;
@@ -123,48 +123,48 @@ const promptEngineer = () => {
     {
       type: 'number',
       name: 'enIdNumber',
-      message: "What is this Engineer's ID number? (required)"
+      message: "What is this Engineer's ID number? (required)",
       validate: enIdInput => {
         if(enIdInput) {
           return true;
         } else {
-          console.log("You must enter an ID number for this Engineer.")
+          console.log("You must enter an ID number for this Engineer.");
         }
       }
 
     },
     {
       type: 'input',
-      name: 'enEmail'
-      message: "Please enter the Engineer's email address. (required)
+      name: 'enEmail',
+      message: "Please enter the Engineer's email address. (required)",
       validate: enEmailInput => {
         if (enEmailInput) {
           return true;
         } else {
-          console.log("You must enter an email for this Engineer.")
+          console.log("You must enter an email for this Engineer.");
         }
       }
     },
     {
       type: 'input',
       name: 'enGithub',
-      message: "Please enter the Engineer's Github username."
+      message: "Please enter the Engineer's Github username.",
       validate: enGithubInput => {
         if(enGithubInput) {
           return true;
         } else {
-          console.log("You must enter a Github username for this Engineer.")
+          console.log("You must enter a Github username for this Engineer.");
         }
       }
     }
-  ]);
+  ])
 
   .then(data => {
     const engineer = new Engineer(data.enName, data.enIdNumber, data.enEmail, data.enGithub);
     allTeam.push(engineer);
     allIds.push(data.enIdNumber);
     promptWhatNext();
-  });
+  })
 };
 
 const promptIntern = () => {
@@ -172,7 +172,7 @@ const promptIntern = () => {
     {
       type: 'input',
       name: 'inName',
-      message: "What is the Intern's name? (required)"
+      message: "What is the Intern's name? (required)",
       validate: inNameInput => {
         if(inNameInput) {
           return true;
@@ -185,53 +185,53 @@ const promptIntern = () => {
     {
       type: 'number',
       name: 'inIdNumber',
-      message: "What is this Intern's ID number? (required)"
+      message: "What is this Intern's ID number? (required)",
       validate: inIdInput => {
         if(inIdInput) {
           return true;
         } else {
-          console.log("You must enter an ID number for this Intern.")
+          console.log("You must enter an ID number for this Intern.");
         }
       }
 
     },
     {
       type: 'input',
-      name: 'inEmail'
-      message: "Please enter the Interns's email address. (required)
+      name: 'inEmail',
+      message: "Please enter the Interns's email address. (required)",
       validate: inEmailInput => {
         if (inEmailInput) {
           return true;
         } else {
-          console.log("You must enter an email for this Intern.")
+          console.log("You must enter an email for this Intern.");
         }
       }
     },
     {
       type: 'input',
       name: 'inSchool',
-      message: "Please enter the Intern's school name."
+      message: "Please enter the Intern's school name.",
       validate: inSchoolInput => {
         if(inSchoolInput) {
           return true;
         } else {
-          console.log("You must enter a school name for the Intern.")
+          console.log("You must enter a school name for the Intern.");
         }
       }
     }
-  ]);
+  ])
 
   .then(data => {
     const intern = new Intern(data.inName, data.inIdNumber, data.inEmail, data.inSchoolInput);
     allTeam.push(intern);
     allIds.push(data.inIdNumber);
     promptWhatNext();
-  });
+  })
 };
 
 function writePage() {
-  if(!fs.existsSync(output_dir) {fs.mkdir(output_dir)}
-  fs.writeFileSync(output_path, generateTemplate(allTeam), 'UTF-8'))
+  if(!fs.existsSync(output_dir)) {fs.mkdir(output_dir)}
+  fs.writeFileSync(output_path, generateTemplate(allTeam), 'UTF-8')
 }
 
 function init() {
