@@ -1,14 +1,15 @@
 const { test, expect } = require ("@jest/globals");
-const Engineer = require('../lib/engineerClass');
+const Engineer = require("../lib/engineerClass");
 
 test('creates an engineer object', () => {
-  const engineer = new Engineer('name');
+  const engineer = new Engineer('name', 'id', 'email', 'github');
 
-  expect(engineer.name).toBe('name');
-  expect(engineer.id).toBe('id');
-  expect(engineer.email).toBe('email');
-  expect(engineer.github).toBe('github');
-  expect(engineer.getName()).toEqual(expect.any(String));
-  expect(engineer.getId()).toEqual(expect.any(Number));
-  expect(engineer.getEmail()).toEqual(expect.any(String));
+  expect(engineer.getName()).toBe('name');
+  expect(engineer.getId()).toBe('id');
+  expect(engineer.getEmail()).toBe('email');
+  expect(engineer.getGithub()).toBe('github');
+  expect(engineer.name).toEqual(expect.any(String));
+  expect(engineer.id).toEqual(expect.any(Number));
+  expect(engineer.email).toEqual(expect.any(String));
+  expect(engineer.github).toEqual(expect.any(String));
 });
