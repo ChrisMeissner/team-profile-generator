@@ -11,6 +11,9 @@ const Manager = require ("./lib/managerClass");
 const allTeam = [];
 const allIds = [];
 
+const output_dir = path.resolve(__dirname, "output");
+const output_path = path.join(output_dir, 'teamprofile.html')
+
 const profileTeam = () => {
   inquirer.promptManager([
     {
@@ -70,7 +73,7 @@ const profileTeam = () => {
     profileTeam();
   })
 
-
+  inquirer.whatNext([
     {
       type: 'list',
       name: 'employeeAdd',
@@ -88,15 +91,15 @@ const profileTeam = () => {
   
   .then((answers) => {
     console.log(answers)
-    if(answers.choice === 'Add Engineer') {
-      promptEngineer();
-    } else if(answers.choice === 'Add Intern') {
-      promptIntern();
-    } else if(answers.choice === 'Finish Profile') {
-      writePage();
-      console.log("Go to 'team.html' to see your updated team profile.");
-    }
-  });
+      if(answers.choice === 'Add Engineer') {
+        promptEngineer();
+      } else if(answers.choice === 'Add Intern') {
+        promptIntern();
+      } else if(answers.choice === 'Finish Profile') {
+        writePage();
+        console.log("Go to 'teamprofile.html' to see your updated team profile.");
+      }
+  })
 };
 
 const promptEngineer = () => {
@@ -153,7 +156,10 @@ const promptEngineer = () => {
     }
   ])
   .then(data => {
-    const engineer = new Engineer(data.enName, data.enIdNumber, data.enEmail, data.enGithub)
+    const engineer = new Engineer(data.enName, data.enIdNumber, data.enEmail, data.enGithub);
+    allTeam.push(engineer);
+    allIds.push(data.enIdNumber);
+    profileTeam();
   })
 
   console.log('')
