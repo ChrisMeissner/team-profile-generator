@@ -14,8 +14,8 @@ const allIds = [];
 const output_dir = path.resolve(__dirname, "output");
 const output_path = path.join(output_dir, 'teamprofile.html')
 
-const profileTeam = () => {
-  inquirer.promptManager([
+const promptManager = () => {
+  inquirer.prompt([
     {
       type: 'input',
       name: 'manName',
@@ -31,7 +31,7 @@ const profileTeam = () => {
     {
       type: 'input',
       name: 'manIdNumber',
-      message: "What is your employee ID number?",
+      message: "What is your Employee ID Number?",
       validate: manIdNumberInput => {
         if (manIdNumberInput) {
           return true;
@@ -67,13 +67,15 @@ const profileTeam = () => {
   ])
 
   .then(data => {
-    const manager = new Manager(data.manName, data.manIdNumber, data.manEmail, data.manOfficeNumber)
-    allTeam.push(manager)
-    allIds.push(data.id)
-    profileTeam();
+    const manager = new Manager(data.manName, data.manIdNumber, data.manEmail, data.manOfficeNumber);
+    allTeam.push(manager);
+    allIds.push(data.id);
+    promptManager();
   })
+};
 
-  inquirer.whatNext([
+const promptWhatNext = () => {
+  inquirer.prompt([
     {
       type: 'list',
       name: 'employeeAdd',
@@ -102,17 +104,18 @@ const profileTeam = () => {
   })
 };
 
+
 const promptEngineer = () => {
   inquirer.prompt([
     {
       type: 'input',
       name: 'enName',
-      message: "What is the engineer's name? (required)"
+      message: "What is the Engineer's name? (required)"
       validate: enNameInput => {
         if(enNameInput) {
           return true;
         } else {
-          console.log("You must enter a name for this engineer.");
+          console.log("You must enter a name for this Engineer.");
           return false;
         }
       }
@@ -120,12 +123,12 @@ const promptEngineer = () => {
     {
       type: 'number',
       name: 'enIdNumber',
-      message: "What is this engineer's ID number? (required)"
+      message: "What is this Engineer's ID number? (required)"
       validate: enIdInput => {
         if(enIdInput) {
           return true;
         } else {
-          console.log("You must enter an ID number for this engineer.")
+          console.log("You must enter an ID number for this Engineer.")
         }
       }
 
@@ -133,7 +136,7 @@ const promptEngineer = () => {
     {
       type: 'input',
       name: 'enEmail'
-      message: "Please enter the engineer's email address. (required)
+      message: "Please enter the Engineer's email address. (required)
       validate: enEmailInput => {
         if (enEmailInput) {
           return true;
@@ -145,22 +148,83 @@ const promptEngineer = () => {
     {
       type: 'input',
       name: 'enGithub',
-      message: "Please enter the engineer's Github username."
+      message: "Please enter the Engineer's Github username."
       validate: enGithubInput => {
         if(enGithubInput) {
           return true;
         } else {
-          console.log("You must enter a Github username for this engineer.")
+          console.log("You must enter a Github username for this Engineer.")
         }
       }
     }
   ])
+
   .then(data => {
     const engineer = new Engineer(data.enName, data.enIdNumber, data.enEmail, data.enGithub);
     allTeam.push(engineer);
     allIds.push(data.enIdNumber);
-    profileTeam();
+    promptWhatNext();
   })
+};
 
-  console.log('')
-}
+const promptIntern = () => {
+  inquirer.prompt([
+    {
+      type: 'input',
+      name: 'inName',
+      message: "What is the Intern's name? (required)"
+      validate: inNameInput => {
+        if(inNameInput) {
+          return true;
+        } else {
+          console.log("You must enter a name for this Intern.");
+          return false;
+        }
+      }
+    },
+    {
+      type: 'number',
+      name: 'inIdNumber',
+      message: "What is this Intern's ID number? (required)"
+      validate: inIdInput => {
+        if(inIdInput) {
+          return true;
+        } else {
+          console.log("You must enter an ID number for this Intern.")
+        }
+      }
+
+    },
+    {
+      type: 'input',
+      name: 'inEmail'
+      message: "Please enter the Interns's email address. (required)
+      validate: inEmailInput => {
+        if (inEmailInput) {
+          return true;
+        } else {
+          console.log("You must enter an email for this Intern.")
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'inSchool',
+      message: "Please enter the Intern's school name."
+      validate: inSchoolInput => {
+        if(inSchoolInput) {
+          return true;
+        } else {
+          console.log("You must enter a school name for the Intern.")
+        }
+      }
+    }
+  ])
+
+  .then(data => {
+    const intern = new Intern(data.inName, data.inIdNumber, data.inEmail, data.inSchoolInput);
+    allTeam.push(intern);
+    allIds.push(data.inIdNumber);
+    promptWhatNext();
+  })
+};
