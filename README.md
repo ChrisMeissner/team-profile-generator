@@ -8,9 +8,9 @@ This is an app that generates a team profile based on inputs from a manager.
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
-* [Contributing] (#contributing)
-* [Tests] (#tests)
-* [Questions] (#questions)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
 
 ## Installation
 npm i
