@@ -8,6 +8,9 @@ const Engineer = require ("./lib/engineerClass");
 const Intern = require ("./lib/internClass");
 const Manager = require ("./lib/managerClass");
 
+const allTeam = [];
+const allIds = [];
+
 const profileTeam = () => {
   inquirer.promptManager([
     {
@@ -57,12 +60,46 @@ const profileTeam = () => {
           return false;
         }
       }
-    },
+    }
+  ])
+
+  .then(data => {
+    const manager = new Manager(data.name, data.id, data.email, data.officeNumber)
+    allTeam.push(manager)
+    allIds.push(data.id)
+    profileTeam();
+  })
+
+
     {
       type: 'list',
       name: 'employeeAdd',
       message: "What would you like to do next?",
       choices: ['Add Engineer', 'Add Intern', 'Finish Profile']
+      validate: employeeAddInput => {
+        if (employeeAddInput) {
+          return true;
+        } else {
+          return false;
+        }
       }
-
+    },
+  ])
+  
+  .then((answers) => {
+    console.log(answers)
+    if(answers.choice === 'Add Engineer') {
+      promptEngineer();
+    } else if(answers.choice === 'Add Intern') {
+      promptIntern();
+    } else if(amswers.choice === 'Finish Profile') {
+      writePage();
+      console.log("Go to 'team.html' to see your updated team profile.");
     }
+  });
+};
+
+const promptEngineer = () => {
+
+  console.log('')
+}
