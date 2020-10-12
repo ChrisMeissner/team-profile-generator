@@ -3,7 +3,7 @@
 ![GitHub license](https://img.shields.io/badge/license-ISC-blue.svg)
 
 ## Description
-This is an app that generates a team profile based on inputs from a manager. 
+This is an app that generates a team profile based on inputs from a manager. Built with node.js and jest for tests.
 
 ## Table of Contents
 * [Installation](#installation)
@@ -16,6 +16,7 @@ This is an app that generates a team profile based on inputs from a manager.
 npm i
 
 ## Usage
+Click the video to see the app run in the command line. <iframe src="https://drive.google.com/file/d/1NRcQI_utc9bfhxio_OChXQwrlW2yARK-/preview" width="640" height="480"></iframe>
 
 
 ## Contributing
@@ -23,6 +24,7 @@ Made by Chris Meissner
 
 
 ## Tests
+To run the program, type "node index" into the command line. You can also use "npm run tests" to run tests
 
 
 ## Questions
