@@ -235,7 +235,7 @@ const promptIntern = () => {
 
 function writePage() {
   if(!fs.existsSync(output_dir)) {fs.mkdir(output_dir)}
-  fs.writeFileSync(output_path, generateTemplate(allTeam), 'UTF-8')
+  fs.writeFileSync(output_path, generateTemplate('teamprofile.html'), 'utf8')
 }
 
 function init() {
