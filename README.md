@@ -2,6 +2,9 @@
 
 ![GitHub license](https://img.shields.io/badge/license-ISC-blue.svg)
 
+## Video Walk-Through
+<iframe src="https://drive.google.com/file/d/19OmweE5XhPoIW-QKFB-fTY51XFMuzuPV/preview" width="640" height="480"></iframe>
+
 ## Description
 This is an app that generates a team profile based on inputs from a manager. Built with node.js and jest for tests.
 
