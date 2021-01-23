@@ -24,7 +24,7 @@ Made by Chris Meissner
 
 
 ## Tests
-To run the program, type "node index" into the command line. You can also use "npm run tests" to run tests
+To run the program, type "node index" into the command line. You can also use "npm run tests" to run tests.
 
 
 ## Questions
