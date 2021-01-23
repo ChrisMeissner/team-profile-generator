@@ -2,6 +2,9 @@
 
 ![GitHub license](https://img.shields.io/badge/license-ISC-blue.svg)
 
+## Screenshot
+<img width="1265" alt="Screen Shot 2021-01-23 at 10 18 35 AM" src="https://user-images.githubusercontent.com/69017427/105610499-b6ce0580-5d64-11eb-861e-7a03e8ffbf28.png">
+
 ## Video Walkthrough Link
 https://drive.google.com/file/d/19OmweE5XhPoIW-QKFB-fTY51XFMuzuPV/view
 
