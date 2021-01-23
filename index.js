@@ -43,7 +43,7 @@ const promptManager = () => {
       }
     },
     {
-      type: 'input',
+      type: 'email',
       name: 'manEmail',
       message: "What is your email address? (required)",
       validate: manEmailInput => {
@@ -72,6 +72,7 @@ const promptManager = () => {
   
   .then(data => {
     const manager = new Manager(data.manName, data.manIdNumber, data.manEmail, data.manOfficeNumber);
+    console.log('manager', manager);
     allTeam.push(manager);
     allIds.push(data.id);
     promptWhatNext();
@@ -138,7 +139,7 @@ const promptEngineer = () => {
 
     },
     {
-      type: 'input',
+      type: 'email',
       name: 'enEmail',
       message: "Please enter the Engineer's email address. (required)",
       validate: enEmailInput => {
@@ -165,6 +166,7 @@ const promptEngineer = () => {
 
   .then(data => {
     const engineer = new Engineer(data.enName, data.enIdNumber, data.enEmail, data.enGithub);
+    console.log('engineer', engineer);
     allTeam.push(engineer);
     allIds.push(data.enIdNumber);
     promptWhatNext();
@@ -200,7 +202,7 @@ const promptIntern = () => {
 
     },
     {
-      type: 'input',
+      type: 'email',
       name: 'inEmail',
       message: "Please enter the Interns's email address. (required)",
       validate: inEmailInput => {
@@ -226,16 +228,18 @@ const promptIntern = () => {
   ])
 
   .then(data => {
-    const intern = new Intern(data.inName, data.inIdNumber, data.inEmail, data.inSchoolInput);
+    const intern = new Intern(data.inName, data.inIdNumber, data.inEmail, data.inSchool);
+    console.log('intern', intern);
     allTeam.push(intern);
     allIds.push(data.inIdNumber);
     promptWhatNext();
+    
   })
 };
 
 function writePage() {
-  if(!fs.existsSync(output_dir)) {fs.mkdir(output_dir)}
-  fs.writeFileSync(output_path, generateTemplate('teamprofile.html'), 'utf8')
+  if(!fs.existsSync(output_dir)) {fs.mkdirSync(output_dir)}
+  fs.writeFileSync(output_path, generateTemplate(allTeam), 'utf8')
 }
 
 function init() {
